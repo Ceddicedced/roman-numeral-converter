@@ -1,6 +1,6 @@
 # Roman Numeral Converter
 
-This Python CLI application, developed by [Your Name], provides an easy-to-use interface for converting integers to Roman numerals and vice versa. It leverages the Click library to create a user-friendly command-line tool.
+I developed this python cli for my course "Moderne Softwareentwicklung", provides an easy-to-use interface for converting integers to Roman numerals and vice versa. It uses the Click library to create a user-friendly command-line tool.
 
 ## Features
 
