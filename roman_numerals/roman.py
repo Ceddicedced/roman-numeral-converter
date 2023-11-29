@@ -99,9 +99,9 @@ def from_roman(roman: str) -> None:
     # Conversion process
     num = 0
     for key, value in roman_numerals.items():
-        while key in roman:
-            num += value
-            roman = roman.replace(key, "", 1)
+        if key in roman:
+            num += value * roman.count(key)
+            roman = roman.replace(key, "")
 
     click.echo(num)
 

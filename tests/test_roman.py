@@ -1,7 +1,7 @@
 import pytest
 from click.testing import CliRunner
 
-from roman.roman import cli
+from roman_numerals.roman import cli
 
 
 @pytest.fixture

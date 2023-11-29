@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "software-dev"
+name = "roman_numerals"
 version = "0.1.0"
 description = ""
 authors = ["ceddicedced <cedric@busacker.dev>"]
@@ -24,17 +24,22 @@ select = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-aio-mc-rcon = "^3.2.1"
 click = "^8.1.7"
-jinja2 = "^3.1.2"
 ruff = "^0.1.6"
-pytest-cov = "^4.1.0"
 pre-commit = "^3.5.0"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
+pytest-cov = "^4.1.0"
 mypy = "^1.7.1"
+
+[tool.mypy]
+strict = true
+warn_unreachable = true
+pretty = true
+show_column_numbers = true
+show_error_context = true
 
 [build-system]
 requires = ["poetry-core"]
