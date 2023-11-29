@@ -11,7 +11,7 @@ ROMAN_REGEX = r"^(?=.)M{0,3}(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$"
 
 
 @click.group()
-def cli():
+def cli() -> None:
     """Click group for the CLI.
     This group bundles the commands for converting to and from Roman numerals.
     """
@@ -20,7 +20,7 @@ def cli():
 
 @cli.command()
 @click.argument("number", type=int)
-def to_roman(number):
+def to_roman(number: int) -> None:
     """
     Convert a number to a Roman numeral.
 
@@ -64,7 +64,7 @@ def to_roman(number):
 
 @cli.command()
 @click.argument("roman", type=str)
-def from_roman(roman):
+def from_roman(roman: str) -> None:
     """
     Convert a Roman numeral to a number.
 
