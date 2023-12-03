@@ -5,11 +5,11 @@ from roman_numerals.roman import cli
 
 
 @pytest.fixture
-def runner():
+def runner() -> CliRunner:
     return CliRunner()
 
 
-def test_to_roman(runner):
+def test_to_roman(runner: CliRunner) -> None:
     # Test conversion of a few numbers to Roman numerals
     test_cases = [
         (1, "I"),
@@ -29,7 +29,7 @@ def test_to_roman(runner):
         assert result.output.strip() == expected_output
 
 
-def test_from_roman(runner):
+def test_from_roman(runner: CliRunner):
     # Test conversion of a few Roman numerals to numbers
     test_cases = [
         ("I", 1),
@@ -49,7 +49,7 @@ def test_from_roman(runner):
         assert result.output.strip() == str(expected_output)
 
 
-def test_to_roman_invalid_input(runner):
+def test_to_roman_invalid_input(runner: CliRunner):
     # Test invalid integer input
     invalid_inputs = [-1, 0, 4000, 1.5, "abc"]
     for number in invalid_inputs:
@@ -57,7 +57,7 @@ def test_to_roman_invalid_input(runner):
         assert result.exception
 
 
-def test_from_roman_invalid_input(runner):
+def test_from_roman_invalid_input(runner: CliRunner):
     # Test invalid Roman numeral input
     invalid_inputs = ["IIII", "VV", "LL", "DD", "MMMM", "ABC"]
     for roman in invalid_inputs:
@@ -65,7 +65,7 @@ def test_from_roman_invalid_input(runner):
         assert result.exception
 
 
-def test_equivalence(runner):
+def test_equivalence(runner: CliRunner):
     # Test random equivalence between to-roman and from-roman
 
     for number in range(1, 3999):

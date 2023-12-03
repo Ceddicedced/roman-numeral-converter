@@ -80,7 +80,7 @@ def from_roman(roman: str) -> None:
         raise click.BadParameter("Please enter a valid Roman numeral.")
 
     # Mapping of Roman numerals to decimal numbers
-    roman_numerals = {
+    roman_numerals: dict[str, int] = {
         "CM": 900,
         "CD": 400,
         "XC": 90,
