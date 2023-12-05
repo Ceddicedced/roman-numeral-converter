@@ -1,7 +1,7 @@
 import pytest
 from click.testing import CliRunner
 
-from roman_numerals import RomanError, RomanNumeral
+from roman_numerals_converter import RomanError, RomanNumeral
 
 
 @pytest.fixture
