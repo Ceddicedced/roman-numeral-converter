@@ -35,12 +35,6 @@ jobs:
         run: |
           poetry install
       #----------------------------------------------
-      #  -----  lint with ruff
-      #----------------------------------------------
-      - name: Lint with ruff
-        run: |
-          poetry run ruff --output-format=github .
-      #----------------------------------------------
       #    run test suite and output coverage file
       #----------------------------------------------
       - name: Test with pytest
