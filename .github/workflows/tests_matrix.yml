@@ -78,5 +78,6 @@ jobs:
       - name: Install dependencies
         run: poetry install --with github-actions
 
+
       - name: Run pytest
         run: poetry run pytest
