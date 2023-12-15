@@ -219,17 +219,17 @@ class RomanNumeral:
         sum: int = 0
 
         if isinstance(other, RomanNumeral):
-            sum: int = self.to_decimal() + other.to_decimal()
+            sum = self.to_decimal() + other.to_decimal()
 
         if isinstance(other, str):
-            sum: int = self.to_decimal() + RomanNumeral(other).to_decimal()
+            sum = self.to_decimal() + RomanNumeral(other).to_decimal()
 
         if isinstance(other, int):
-            sum: int = self.to_decimal() + other
+            sum = self.to_decimal() + other
 
         assert 0 < sum < 4000, "Addition result must be between 1 and 3999."
 
-        return sum
+        return RomanNumeral.from_decimal(sum)
 
     def __radd__(self, other: object) -> object:
         """Add RomanNumeral to object.

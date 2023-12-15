@@ -148,54 +148,54 @@ def test_roman_numeral_addition_out_of_range():
     roman1 = RomanNumeral("MMMCMXCIX")
     roman2 = RomanNumeral("I")
     with pytest.raises(AssertionError):
-        roman1 + roman2
+        roman1 + roman2  # type: ignore
     with pytest.raises(AssertionError):
-        roman2 + roman1
+        roman2 + roman1  # type: ignore
     with pytest.raises(AssertionError):
-        roman1 + "I"
+        roman1 + "I"  # type: ignore
     with pytest.raises(AssertionError):
-        roman1 + 1
+        roman1 + 1  # type: ignore
 
 
 def test_roman_numeral_unsupported_operations():
     # Test unsupported operations
     roman = RomanNumeral("X")
     with pytest.raises(TypeError):
-        roman - roman
+        roman - roman  # type: ignore
     with pytest.raises(TypeError):
-        roman - "V"
+        roman - "V"  # type: ignore
     with pytest.raises(TypeError):
-        roman - 5
+        roman - 5  # type: ignore
     with pytest.raises(TypeError):
-        roman * roman
+        roman * roman  # type: ignore
     with pytest.raises(TypeError):
-        roman * "V"
+        roman * "V"  # type: ignore
     with pytest.raises(TypeError):
-        roman * 5
+        roman * 5  # type: ignore
     with pytest.raises(TypeError):
-        roman / roman
+        roman / roman  # type: ignore
     with pytest.raises(TypeError):
-        roman / "V"
+        roman / "V"  # type: ignore
     with pytest.raises(TypeError):
-        roman / 5
+        roman / 5  # type: ignore
     with pytest.raises(TypeError):
-        roman // roman
+        roman // roman  # type: ignore
     with pytest.raises(TypeError):
-        roman // "V"
+        roman // "V"  # type: ignore
     with pytest.raises(TypeError):
-        roman // 5
+        roman // 5  # type: ignore
     with pytest.raises(TypeError):
-        roman % roman
+        roman % roman  # type: ignore
     with pytest.raises(TypeError):
-        roman % "V"
+        roman % "V"  # type: ignore
     with pytest.raises(TypeError):
-        roman % 5
+        roman % 5  # type: ignore
     with pytest.raises(TypeError):
-        roman**roman
+        roman**roman  # type: ignore
     with pytest.raises(TypeError):
-        roman ** "V"
+        roman ** "V"  # type: ignore
     with pytest.raises(TypeError):
-        roman**5
+        roman**5  # type: ignore
 
 
 def test_roman_numeral_not_implemented():
