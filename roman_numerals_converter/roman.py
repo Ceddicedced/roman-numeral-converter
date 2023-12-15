@@ -96,7 +96,7 @@ class RomanNumeral:
         Returns:
             str: The Roman numeral representation of the object.
         """
-        return f"RomanNumeral({self._value})"
+        return f"RomanNumeral('{self._value}')"
 
     def __eq__(self, other: object) -> bool:
         """Compare two RomanNumeral objects.

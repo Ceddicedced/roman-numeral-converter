@@ -58,7 +58,3 @@ def from_roman(roman: str) -> None:
     rn = RomanNumeral(roman)
     num: int = rn.to_decimal()
     click.echo(num)
-
-
-if __name__ == "__main__":
-    cli(prog_name="roman_numerals")

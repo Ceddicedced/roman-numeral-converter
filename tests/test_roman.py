@@ -142,6 +142,7 @@ def test_roman_numeral_reverse_addition():
     roman3 = RomanNumeral("L")
     assert roman2 + roman1 == 15
     assert roman3 + roman1 == 60
+    assert roman1.__radd__(roman2) == 15
     assert "V" + roman1 == "VX"
     assert "L" + roman1 == "LX"
     assert 5 + roman1 == 15
@@ -160,6 +161,60 @@ def test_roman_numeral_addition_out_of_range():
         roman1 + "I"
     with pytest.raises(AssertionError):
         roman1 + 1
+
+
+def test_roman_numeral_unsupported_operations():
+    # Test unsupported operations
+    roman = RomanNumeral("X")
+    with pytest.raises(TypeError):
+        roman - roman
+    with pytest.raises(TypeError):
+        roman - "V"
+    with pytest.raises(TypeError):
+        roman - 5
+    with pytest.raises(TypeError):
+        roman * roman
+    with pytest.raises(TypeError):
+        roman * "V"
+    with pytest.raises(TypeError):
+        roman * 5
+    with pytest.raises(TypeError):
+        roman / roman
+    with pytest.raises(TypeError):
+        roman / "V"
+    with pytest.raises(TypeError):
+        roman / 5
+    with pytest.raises(TypeError):
+        roman // roman
+    with pytest.raises(TypeError):
+        roman // "V"
+    with pytest.raises(TypeError):
+        roman // 5
+    with pytest.raises(TypeError):
+        roman % roman
+    with pytest.raises(TypeError):
+        roman % "V"
+    with pytest.raises(TypeError):
+        roman % 5
+    with pytest.raises(TypeError):
+        roman**roman
+    with pytest.raises(TypeError):
+        roman ** "V"
+    with pytest.raises(TypeError):
+        roman**5
+
+
+def test_roman_numeral_not_implemented():
+    roman = RomanNumeral("V")
+    for obj in [1.5, ["I"], {"I": 1}]:
+        assert roman.__eq__(obj) is NotImplemented
+        assert roman.__ne__(obj) is NotImplemented
+        assert roman.__le__(obj) is NotImplemented
+        assert roman.__lt__(obj) is NotImplemented
+        assert roman.__ge__(obj) is NotImplemented
+        assert roman.__gt__(obj) is NotImplemented
+        assert roman.__add__(obj) is NotImplemented
+        assert roman.__radd__(obj) is NotImplemented
 
 
 def test_roman_numeral_representation():
