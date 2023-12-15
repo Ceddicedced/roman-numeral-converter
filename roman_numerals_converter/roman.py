@@ -74,15 +74,13 @@ class RomanNumeral:
         Returns:
             int: The decimal representation of the Roman numeral.
         """
-
-        # Mapping of Roman numerals to decimal numbers
-
+        roman_value = self._value
         # Conversion process
         decimal = 0
         for numeral, value in self.ROMAN_INT_MAP:
-            while self._value.startswith(numeral):
+            while roman_value.startswith(numeral):
                 decimal += value
-                self._value = self._value[len(numeral) :]
+                roman_value = roman_value[len(numeral) :]
 
         return decimal
 
@@ -98,7 +96,7 @@ class RomanNumeral:
         Returns:
             str: The Roman numeral representation of the object.
         """
-        return f"RomanNumeral('{self._value}')"
+        return f"RomanNumeral({self._value})"
 
     def __eq__(self, other: object) -> bool:
         """Compare two RomanNumeral objects.
