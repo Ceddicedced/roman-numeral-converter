@@ -1,12 +1,6 @@
 import pytest
-from click.testing import CliRunner
 
 from roman_numerals_converter import RomanError, RomanNumeral
-
-
-@pytest.fixture
-def runner() -> CliRunner:
-    return CliRunner()
 
 
 def test_roman_numeral_to_decimal():
