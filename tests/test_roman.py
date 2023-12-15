@@ -80,3 +80,90 @@ def test_invalid_decimal_input():
     for decimal in invalid_inputs:
         with pytest.raises(RomanError):
             RomanNumeral.from_decimal(decimal)
+
+
+def test_invalid_str_input():
+    # Test invalid Roman numeral input
+    invalid_inputs = [1, 1.5, ["I"], {"I": 1}]
+    for roman in invalid_inputs:
+        with pytest.raises(RomanError):
+            RomanNumeral(roman)
+
+
+def test_roman_numeral_equality():
+    # Test equality of RomanNumeral objects
+    roman1 = RomanNumeral("X")
+    roman2 = RomanNumeral("X")
+    roman3 = RomanNumeral("V")
+    assert roman1 == roman2
+    assert roman1 != roman3
+    assert roman1 == "X"
+    assert roman1 != "V"
+    assert roman1 == 10
+    assert roman1 != 5
+
+    # Test comparison of RomanNumeral objects
+    roman1 = RomanNumeral("X")
+    roman2 = RomanNumeral("V")
+    roman3 = RomanNumeral("L")
+    assert roman1 < roman3
+    assert roman1 > roman2
+    assert roman1 <= roman1
+    assert roman1 >= roman2
+    assert roman1 < "L"
+    assert roman1 > "V"
+    assert roman1 <= "X"
+    assert roman1 >= "X"
+    assert roman1 < 50
+    assert roman1 > 5
+    assert roman1 <= 10
+    assert roman1 >= 10
+
+
+def test_roman_numeral_addition():
+    # Test addition of RomanNumeral objects
+    roman1 = RomanNumeral("X")
+    roman2 = RomanNumeral("V")
+    roman3 = RomanNumeral("L")
+    assert roman1 + roman2 == 15
+    assert roman1 + roman3 == 60
+    assert roman1 + "V" == 15
+    assert roman1 + "L" == 60
+    assert "X" + roman2 == "XV"
+    assert "X" + roman3 == "XL"
+    assert roman1 + 5 == 15
+    assert roman1 + 50 == 60
+
+
+def test_roman_numeral_reverse_addition():
+    # Test reverse addition of RomanNumeral objects
+    roman1 = RomanNumeral("X")
+    roman2 = RomanNumeral("V")
+    roman3 = RomanNumeral("L")
+    assert roman2 + roman1 == 15
+    assert roman3 + roman1 == 60
+    assert "V" + roman1 == "VX"
+    assert "L" + roman1 == "LX"
+    assert 5 + roman1 == 15
+    assert 50 + roman1 == 60
+
+
+def test_roman_numeral_addition_out_of_range():
+    # Test addition of RomanNumeral objects that result in values outside the valid range  # noqa: E501
+    roman1 = RomanNumeral("MMMCMXCIX")
+    roman2 = RomanNumeral("I")
+    with pytest.raises(AssertionError):
+        roman1 + roman2
+    with pytest.raises(AssertionError):
+        roman2 + roman1
+    with pytest.raises(AssertionError):
+        roman1 + "I"
+    with pytest.raises(AssertionError):
+        roman1 + 1
+
+
+def test_roman_numeral_representation():
+    # Test string representation of RomanNumeral objects
+    roman = RomanNumeral("X")
+    assert str(roman) == "X"
+    assert repr(roman) == "RomanNumeral('X')"
