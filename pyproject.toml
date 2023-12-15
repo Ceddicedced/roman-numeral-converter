@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "roman-numerals-converter"
-version = "0.2.5.dev.1702648589"
+version = "0.2.5"
 description = ""
 authors = ["ceddicedced <cedric@busacker.dev>"]
 readme = "README.md"
