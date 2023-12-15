@@ -21,6 +21,39 @@ class RomanNumeral:
     a Roman numeral to a decimal number and vice versa.
     """
 
+    ROMAN_INT_MAP = [
+        ("M", 1000),
+        ("CM", 900),
+        ("D", 500),
+        ("CD", 400),
+        ("C", 100),
+        ("XC", 90),
+        ("L", 50),
+        ("XL", 40),
+        ("X", 10),
+        ("IX", 9),
+        ("V", 5),
+        ("IV", 4),
+        ("I", 1),
+    ]
+
+    # Mapping of decimal numbers to Roman numerals
+    INT_ROMAN_MAP = [
+        (1000, "M"),
+        (900, "CM"),
+        (500, "D"),
+        (400, "CD"),
+        (100, "C"),
+        (90, "XC"),
+        (50, "L"),
+        (40, "XL"),
+        (10, "X"),
+        (9, "IX"),
+        (5, "V"),
+        (4, "IV"),
+        (1, "I"),
+    ]
+
     def __init__(self, value: str) -> None:
         """Constructor for RomanNumeral class.
         Args:
@@ -43,25 +76,10 @@ class RomanNumeral:
         """
 
         # Mapping of Roman numerals to decimal numbers
-        roman_numerals = [
-            ("M", 1000),
-            ("CM", 900),
-            ("D", 500),
-            ("CD", 400),
-            ("C", 100),
-            ("XC", 90),
-            ("L", 50),
-            ("XL", 40),
-            ("X", 10),
-            ("IX", 9),
-            ("V", 5),
-            ("IV", 4),
-            ("I", 1),
-        ]
 
         # Conversion process
         decimal = 0
-        for numeral, value in roman_numerals:
+        for numeral, value in self.ROMAN_INT_MAP:
             while self._value.startswith(numeral):
                 decimal += value
                 self._value = self._value[len(numeral) :]
@@ -74,6 +92,165 @@ class RomanNumeral:
             str: The Roman numeral representation of the object.
         """
         return self._value
+
+    def __repr__(self) -> str:
+        """Convert a Roman numeral to a string.
+        Returns:
+            str: The Roman numeral representation of the object.
+        """
+        return f"RomanNumeral('{self._value}')"
+
+    def __eq__(self, other: object) -> bool:
+        """Compare two RomanNumeral objects.
+        Args:
+            other (object): Another object.
+        Returns:
+            bool: True if the two objects are equal, False otherwise.
+        """
+        if isinstance(other, RomanNumeral):
+            return self._value == other._value
+
+        if isinstance(other, str):
+            return self._value == other
+
+        if isinstance(other, int):
+            return self.to_decimal() == other
+
+        return NotImplemented
+
+    def __ne__(self, other: object) -> bool:
+        """Compare two RomanNumeral objects.
+        Args:
+            other (object): Another object.
+        Returns:
+            bool: True if the two objects are not equal, False otherwise.
+        """
+        if isinstance(other, RomanNumeral):
+            return self._value != other._value
+
+        if isinstance(other, str):
+            return self._value != other
+
+        if isinstance(other, int):
+            return self.to_decimal() != other
+
+        return NotImplemented
+
+    def __lt__(self, other: object) -> bool:
+        """Compare two RomanNumeral objects.
+        Args:
+            other (object): Another object.
+        Returns:
+            bool: True if the first object is less than the second object, False otherwise.
+        """  # noqa: E501
+        if isinstance(other, RomanNumeral):
+            return self.to_decimal() < other.to_decimal()
+
+        if isinstance(other, str):
+            return self.to_decimal() < RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            return self.to_decimal() < other
+
+        return NotImplemented
+
+    def __le__(self, other: object) -> bool:
+        """Compare two RomanNumeral objects.
+        Args:
+            other (object): Another object.
+        Returns:
+            bool: True if the first object is less than or equal to the second object, False otherwise.
+        """  # noqa: E501
+        if isinstance(other, RomanNumeral):
+            return self.to_decimal() <= other.to_decimal()
+
+        if isinstance(other, str):
+            return self.to_decimal() <= RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            return self.to_decimal() <= other
+
+        return NotImplemented
+
+    def __gt__(self, other: object) -> bool:
+        """Compare two RomanNumeral objects.
+        Args:
+            other (object): Another object.
+        Returns:
+            bool: True if the first object is greater than the second object, False otherwise.
+        """  # noqa: E501
+        if isinstance(other, RomanNumeral):
+            return self.to_decimal() > other.to_decimal()
+
+        if isinstance(other, str):
+            return self.to_decimal() > RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            return self.to_decimal() > other
+
+        return NotImplemented
+
+    def __ge__(self, other: object) -> bool:
+        """Compare two RomanNumeral objects.
+        Args:
+            other (object): Another object.
+        Returns:
+            bool: True if the first object is greater than or equal to the second object, False otherwise.
+        """  # noqa: E501
+        if isinstance(other, RomanNumeral):
+            return self.to_decimal() >= other.to_decimal()
+
+        if isinstance(other, str):
+            return self.to_decimal() >= RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            return self.to_decimal() >= other
+
+        return NotImplemented
+
+    def __add__(self, other: object) -> "RomanNumeral":
+        """Add Int | Str | RomanNumeral to RomanNumeral.
+        Args:
+            other (object): Another object.
+        Returns:
+            RomanNumeral: The sum of the two objects.
+        """
+        if not isinstance(other, (RomanNumeral, str, int)):
+            return NotImplemented
+
+        sum: int = 0
+
+        if isinstance(other, RomanNumeral):
+            sum: int = self.to_decimal() + other.to_decimal()
+
+        if isinstance(other, str):
+            sum: int = self.to_decimal() + RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            sum: int = self.to_decimal() + other
+
+        assert 0 < sum < 4000, "Addition result must be between 1 and 3999."
+
+        return sum
+
+    def __radd__(self, other: object) -> object:
+        """Add RomanNumeral to object.
+        Args:
+            other (object): Another object.
+        Returns:
+            object: The sum of the two objects.
+        """
+
+        if isinstance(other, RomanNumeral):  # Should be implemented anyway
+            return other.__add__(self)
+
+        if isinstance(other, str):
+            return other + self.__str__()
+
+        if isinstance(other, int):
+            return other + self.to_decimal()
+
+        return NotImplemented
 
     @staticmethod
     def is_valid_roman(value: str) -> bool:
@@ -94,32 +271,15 @@ class RomanNumeral:
             str: The Roman numeral representation of the decimal number.
         """
         if not isinstance(number, int):
-            raise RomanError("Please enter an integer.")
+            raise RomanError("Number must be an integer.")
 
         # Check that the number is within the valid range
         if not 0 < number < 4000:
-            raise RomanError("Please enter a number between 1 and 3999.")
-
-        # Mapping of decimal numbers to Roman numerals
-        roman_numerals = [
-            (1000, "M"),
-            (900, "CM"),
-            (500, "D"),
-            (400, "CD"),
-            (100, "C"),
-            (90, "XC"),
-            (50, "L"),
-            (40, "XL"),
-            (10, "X"),
-            (9, "IX"),
-            (5, "V"),
-            (4, "IV"),
-            (1, "I"),
-        ]
+            raise RomanError("Number must be between 1 and 3999.")
 
         # Conversion process
         roman = ""
-        for value, numeral in roman_numerals:
+        for value, numeral in cls.INT_ROMAN_MAP:
             while number >= value:
                 roman += numeral
                 number -= value
