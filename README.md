@@ -3,16 +3,23 @@
 [![codecov](https://codecov.io/gh/Ceddicedced/roman-numeral-converter/graph/badge.svg?token=04M8K8SJX8)](https://codecov.io/gh/Ceddicedced/roman-numeral-converter)
 # Roman Numeral Converter
 
-I developed this python cli for my course "Moderne Softwareentwicklung", provides an easy-to-use interface for converting integers to Roman numerals and vice versa. It uses the Click library to create a user-friendly command-line tool.
+This Python CLI (Command-Line Interface) project, developed for the "Moderne Softwareentwicklung" course, offers an efficient way to convert integers to Roman numerals and vice versa. Built with the Click library, it provides a user-friendly experience on the command line.
 
 ## Features
 
-- **Convert Integers to Roman Numerals**: Convert any integer between 1 and 3999 into its corresponding Roman numeral.
-- **Convert Roman Numerals to Integers**: Translate valid Roman numerals back into integers.
+- **Integer to Roman Numeral Conversion**: Convert integers within the range of 1 to 3999 into Roman numerals.
+- **Roman Numeral to Integer Conversion**: Translate valid Roman numerals back into integers.
 
-## Installation
+## Getting Started
 
-This project uses Poetry for dependency management. To set up the project, follow these steps:
+### Prerequisites
+
+- [Poetry](https://python-poetry.org/) for dependency management.
+- [pip](https://pip.pypa.io/en/stable/) for package installation.
+
+### Installation
+
+#### Using Poetry
 
 1. **Clone the Repository**
 
@@ -20,24 +27,50 @@ This project uses Poetry for dependency management. To set up the project, follo
    git clone https://github.com/your-repository/roman-numeral-converter.git
    cd roman-numeral-converter
    ```
+
 2. **Install Dependencies**
-    Make sure you have Poetry installed. Then run:
-    ```bash
-    poetry install
-    ```
+
+   ```bash
+   poetry install
+   ```
+
+#### Using pip
+
+If you prefer to use pip:
+
+```bash
+pip install roman-numeral-converter
+```
+
 ## Usage
-After installation, you can use the CLI as follows:
 
-1. **Converting an Integer to a Roman Numeral**
+Once installed, the CLI can be used as follows:
 
-```bash
-poetry run python -m roman.your_module_name to-roman [number]
-```
-Replace [number] with the integer you want to convert.
+1. **Convert an Integer to a Roman Numeral**
 
-2. **Converting a Roman Numeral to an Integer**
+   Syntax:
+   ```bash
+   poetry run python -m roman.your_module_name to-roman [number]
+   ```
+   Replace `[number]` with the integer you wish to convert.
 
-```bash
-poetry run python -m roman.your_module_name from-roman [roman_numeral]
-```
-Replace [roman_numeral] with the Roman numeral you want to translate.
+2. **Convert a Roman Numeral to an Integer**
+
+   Syntax:
+   ```bash
+   poetry run python -m roman.your_module_name from-roman [roman_numeral]
+   ```
+   Replace `[roman_numeral]` with the Roman numeral you wish to translate.
+
+## Contributing
+
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) for more information.
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for more information.
+
+## Acknowledgments
+
+- Thanks to the "Moderne Softwareentwicklung" course team for their guidance.
+- [Click](https://click.palletsprojects.com/en/8.0.x/), for making command-line interface creation efficient.
