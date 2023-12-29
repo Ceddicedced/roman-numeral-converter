@@ -43,3 +43,7 @@ async def random_roman_endpoint(min_value: int = 1, max_value: int = 3999):
         }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
+
+
+# TODO: Typechecking
+# TODO: Api text to roman

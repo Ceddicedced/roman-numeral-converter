@@ -97,8 +97,8 @@ def replace_integers_with_roman_numerals(text: str) -> str:
     INTEGER_REGEX = r"\b\d+\b"
 
     # Function to replace each integer with its Roman numeral equivalent
-    def replace_integer(match):
-        integer = int(match.group(0))
+    def replace_integer(match):  # type: ignore
+        integer = int(match.group(0))  # type: ignore
         return convert_to_roman(integer)
 
-    return re.sub(INTEGER_REGEX, replace_integer, text)
+    return re.sub(INTEGER_REGEX, replace_integer, text)  # type: ignore

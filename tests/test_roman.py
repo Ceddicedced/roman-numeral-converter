@@ -3,7 +3,7 @@ import pytest
 from roman_numerals_converter import RomanError, RomanNumeral
 
 
-def test_roman_numeral_to_decimal():
+def test_roman_numeral_to_decimal() -> None:
     # Test conversion of Roman numerals to decimal numbers
     test_cases = [
         ("I", 1),
@@ -22,7 +22,7 @@ def test_roman_numeral_to_decimal():
         assert roman_numeral.to_decimal() == expected_output
 
 
-def test_roman_numeral_to_string():
+def test_roman_numeral_to_string() -> None:
     # Test conversion of Roman numerals to strings
     test_cases = [
         ("I", "I"),
@@ -41,7 +41,7 @@ def test_roman_numeral_to_string():
         assert str(roman_numeral) == expected_output
 
 
-def test_decimal_to_roman():
+def test_decimal_to_roman() -> None:
     # Test conversion of decimal numbers to Roman numerals
     test_cases = [
         (1, "I"),
@@ -60,7 +60,7 @@ def test_decimal_to_roman():
         assert str(roman_numeral) == expected_output
 
 
-def test_invalid_roman_input():
+def test_invalid_roman_input() -> None:
     # Test invalid Roman numeral input
     invalid_inputs = ["IIII", "VV", "LL", "DD", "MMMM", "ABC"]
     for roman in invalid_inputs:
@@ -73,7 +73,7 @@ def test_invalid_decimal_input():
     invalid_inputs = [-1, 0, 4000, 1.5, "abc"]
     for decimal in invalid_inputs:
         with pytest.raises(RomanError):
-            RomanNumeral.from_decimal(decimal)
+            RomanNumeral.from_decimal(decimal)  # type: ignore
 
 
 def test_invalid_str_input():
@@ -81,7 +81,7 @@ def test_invalid_str_input():
     invalid_inputs = [1, 1.5, ["I"], {"I": 1}]
     for roman in invalid_inputs:
         with pytest.raises(RomanError):
-            RomanNumeral(roman)
+            RomanNumeral(roman)  # type: ignore
 
 
 def test_roman_numeral_equality():

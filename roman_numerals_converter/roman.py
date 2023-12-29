@@ -60,7 +60,7 @@ class RomanNumeral:
             value (str): A Roman numeral or a decimal number.
         """
         # Validate input
-        if not isinstance(value, str):
+        if not isinstance(value, str):  # type: ignore
             raise RomanError("Please enter a string.")
 
         # Check if the input is a Roman numeral
@@ -268,7 +268,7 @@ class RomanNumeral:
         Returns:
             str: The Roman numeral representation of the decimal number.
         """
-        if not isinstance(number, int):
+        if not isinstance(number, int):  # type: ignore
             raise RomanError("Number must be an integer.")
 
         # Check that the number is within the valid range
