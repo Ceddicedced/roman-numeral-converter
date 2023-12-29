@@ -1,5 +1,6 @@
 import random
 import re
+import string
 
 from roman_numerals_converter.roman import ROMAN_REGEX, RomanError, RomanNumeral
 
@@ -38,26 +39,6 @@ def convert_from_roman(roman: str) -> int:
         raise ValueError("Error converting from Roman: Invalid Roman numeral") from None
 
 
-def replace_roman_numerals_in_text(text: str) -> str:
-    """
-    Replace all Roman numerals in a given text with their decimal equivalents.
-
-    Args:
-        text (str): The text containing Roman numerals.
-
-    Returns:
-        str: The text with Roman numerals replaced by decimal numbers.
-    """
-    # Regular expression to find Roman numerals
-
-    def replace_roman(match):
-        roman = match.group(0)
-        decimal = convert_from_roman(roman)
-        return str(decimal) if decimal != -1 else roman
-
-    return re.sub(ROMAN_REGEX, replace_roman, text)
-
-
 def random_roman(min_value: int = 1, max_value: int = 3999) -> tuple[str, int]:
     """
     Generate a random Roman numeral. Raises an exception if input is invalid.
@@ -79,3 +60,45 @@ def random_roman(min_value: int = 1, max_value: int = 3999) -> tuple[str, int]:
 
     number = random.randint(min_value, max_value)
     return convert_to_roman(number), number
+
+
+def replace_roman_numerals_in_text(text: str) -> str:
+    """
+    Replace all Roman numerals in a given text with their decimal equivalents.
+
+    Args:
+        text (str): The text containing Roman numerals.
+
+    Returns:
+        str: The text with Roman numerals replaced by decimal numbers.
+    """
+    non_punctation_text = text.translate(str.maketrans("", "", string.punctuation))
+    for word in non_punctation_text.split():
+        if re.match(ROMAN_REGEX, word):
+            try:
+                decimal = convert_from_roman(word)
+                text = text.replace(word, str(decimal))
+            except ValueError:
+                pass
+    return text
+
+
+def replace_integers_with_roman_numerals(text: str) -> str:
+    """
+    Replace all integers in a given text with their Roman numeral equivalents.
+
+    Args:
+        text (str): The text containing integers.
+
+    Returns:
+        str: The text with integers replaced by Roman numerals.
+    """
+    # Regular expression to find integers
+    INTEGER_REGEX = r"\b\d+\b"
+
+    # Function to replace each integer with its Roman numeral equivalent
+    def replace_integer(match):
+        integer = int(match.group(0))
+        return convert_to_roman(integer)
+
+    return re.sub(INTEGER_REGEX, replace_integer, text)
