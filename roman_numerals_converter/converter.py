@@ -62,7 +62,7 @@ def random_roman(min_value: int = 1, max_value: int = 3999) -> tuple[str, int]:
     return convert_to_roman(number), number
 
 
-def replace_roman_numerals_in_text(text: str) -> str:
+def replace_roman_numerals_with_integers_in_text(text: str) -> str:
     """
     Replace all Roman numerals in a given text with their decimal equivalents.
 

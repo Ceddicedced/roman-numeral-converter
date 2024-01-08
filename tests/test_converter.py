@@ -4,7 +4,7 @@ from roman_numerals_converter import (
     convert_from_roman,
     convert_to_roman,
     random_roman,
-    replace_roman_numerals_in_text,
+    replace_roman_numerals_with_integers_in_text,
 )
 from roman_numerals_converter.converter import replace_integers_with_roman_numerals
 
@@ -37,19 +37,22 @@ def test_convert_from_roman_invalid():
 
 # Tests for replace_roman_numerals_in_text
 def test_replace_roman_numerals_in_text():
-    assert replace_roman_numerals_in_text("XX in Roman is 20.") == "20 in Roman is 20."
     assert (
-        replace_roman_numerals_in_text("No roman numerals here.")
+        replace_roman_numerals_with_integers_in_text("XX in Roman is 20.")
+        == "20 in Roman is 20."
+    )
+    assert (
+        replace_roman_numerals_with_integers_in_text("No roman numerals here.")
         == "No roman numerals here."
     )
     assert (
-        replace_roman_numerals_in_text(
+        replace_roman_numerals_with_integers_in_text(
             "In MMXVIII, the event took place on VII of June."
         )
         == "In 2018, the event took place on 7 of June."
     )
     assert (
-        replace_roman_numerals_in_text("The movie title is Rocky II.")
+        replace_roman_numerals_with_integers_in_text("The movie title is Rocky II.")
         == "The movie title is Rocky 2."
     )
 

@@ -4,7 +4,8 @@ from roman_numerals_converter import (
     convert_from_roman,
     convert_to_roman,
     random_roman,
-    replace_roman_numerals_in_text,
+    replace_integers_with_roman_numerals,
+    replace_roman_numerals_with_integers_in_text,
 )
 
 app = FastAPI()
@@ -28,7 +29,12 @@ async def from_roman_endpoint(roman: str):
 
 @app.get("/replace-roman")
 async def replace_roman_endpoint(text: str):
-    return {"result": replace_roman_numerals_in_text(text)}
+    return {"result": replace_roman_numerals_with_integers_in_text(text)}
+
+
+@app.get("/replace-integers")
+async def replace_integers_endpoint(text: str):
+    return {"result": replace_integers_with_roman_numerals(text)}
 
 
 @app.get("/random-roman/")
@@ -43,7 +49,3 @@ async def random_roman_endpoint(min_value: int = 1, max_value: int = 3999):
         }
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
-
-
-# TODO: Typechecking
-# TODO: Api text to roman
