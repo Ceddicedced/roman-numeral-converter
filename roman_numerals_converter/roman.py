@@ -231,16 +231,13 @@ class RomanNumeral:
 
         return RomanNumeral.from_decimal(sum)
 
-    def __radd__(self, other: object) -> object:
+    def __radd__(self, other: object) -> str | int:
         """Add RomanNumeral to object.
         Args:
             other (object): Another object.
         Returns:
             object: The sum of the two objects.
         """
-
-        if isinstance(other, RomanNumeral):  # Should be implemented anyway
-            return other.__add__(self)
 
         if isinstance(other, str):
             return other + self.__str__()
@@ -249,6 +246,143 @@ class RomanNumeral:
             return other + self.to_decimal()
 
         return NotImplemented
+
+    def __sub__(self, other: object) -> "RomanNumeral":
+        """Subtract Int | Str | RomanNumeral from RomanNumeral.
+        Args:
+            other (object): Another object.
+        Returns:
+            RomanNumeral: The difference of the two objects.
+        """
+        if not isinstance(other, (RomanNumeral, str, int)):
+            return NotImplemented
+
+        difference: int = 0
+
+        if isinstance(other, RomanNumeral):
+            difference = self.to_decimal() - other.to_decimal()
+
+        if isinstance(other, str):
+            difference = self.to_decimal() - RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            difference = self.to_decimal() - other
+
+        assert 0 < difference < 4000, "Subtraction result must be between 1 and 3999."
+
+        return RomanNumeral.from_decimal(difference)
+
+    def __rsub__(self, other: object) -> int:
+        """Subtract RomanNumeral from object.
+        Args:
+            other (object): Another object.
+        Returns:
+            object: The difference of the two objects.
+        """
+        if not isinstance(other, int):
+            return NotImplemented
+
+        return other - self.to_decimal()
+
+    def __mul__(self, other: object) -> "RomanNumeral":
+        """Multiply RomanNumeral by Int | Str | RomanNumeral.
+        Args:
+            other (object): Another object.
+        Returns:
+            RomanNumeral: The product of the two objects.
+        """
+        if not isinstance(other, (RomanNumeral, str, int)):
+            return NotImplemented
+
+        product: int = 0
+
+        if isinstance(other, RomanNumeral):
+            product = self.to_decimal() * other.to_decimal()
+
+        if isinstance(other, str):
+            product = self.to_decimal() * RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            product = self.to_decimal() * other
+
+        assert 0 < product < 4000, "Multiplication result must be between 1 and 3999."
+
+        return RomanNumeral.from_decimal(product)
+
+    def __rmul__(self, other: object) -> "RomanNumeral":
+        """Multiply Int | Str | RomanNumeral by RomanNumeral.
+        Args:
+            other (object): Another object.
+        Returns:
+            RomanNumeral: The product of the two objects.
+        """
+        if not isinstance(other, (RomanNumeral, str, int)):
+            return NotImplemented
+
+        product: int = 0
+
+        if isinstance(other, RomanNumeral):
+            product = self.to_decimal() * other.to_decimal()
+
+        if isinstance(other, str):
+            product = self.to_decimal() * RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            product = self.to_decimal() * other
+
+        assert 0 < product < 4000, "Multiplication result must be between 1 and 3999."
+
+        return RomanNumeral.from_decimal(product)
+
+    def __truediv__(self, other: object) -> "RomanNumeral":
+        """Divide RomanNumeral by Int | Str | RomanNumeral.
+        Args:
+            other (object): Another object.
+        Returns:
+            RomanNumeral: The quotient of the two objects.
+        """
+        if not isinstance(other, (RomanNumeral, str, int)):
+            return NotImplemented
+
+        quotient: int = 0
+
+        if isinstance(other, RomanNumeral):
+            quotient = self.to_decimal() // other.to_decimal()
+
+        if isinstance(other, str):
+            quotient = self.to_decimal() // RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            quotient = self.to_decimal() // other
+
+        assert 0 < quotient < 4000, "Division result must be between 1 and 3999."
+
+        return RomanNumeral.from_decimal(quotient)
+
+    def __rtruediv__(self, other: object) -> "RomanNumeral":
+        """Divide Int | Str | RomanNumeral by RomanNumeral.
+        Args:
+            other (object): Another object.
+        Returns:
+            RomanNumeral: The quotient of the two objects.
+        """
+        if not isinstance(other, (RomanNumeral, str, int)):
+            return NotImplemented
+
+        quotient: int = 0
+
+        if isinstance(other, RomanNumeral):
+            quotient = self.to_decimal() // other.to_decimal()
+
+        if isinstance(other, str):
+            quotient = self.to_decimal() // RomanNumeral(other).to_decimal()
+
+        if isinstance(other, int):
+            quotient = self.to_decimal() // other
+
+        assert 0 < quotient < 4000, "Division result must be between 1 and 3999."
+
+        return RomanNumeral.from_decimal(quotient)
 
     @staticmethod
     def is_valid_roman(value: str) -> bool:

@@ -6,7 +6,11 @@ from roman_numerals_converter.converter import (
     replace_integers_with_roman_numerals,  # noqa: F401
     replace_roman_numerals_with_integers_in_text,  # noqa: F401
 )
-from roman_numerals_converter.roman import RomanError, RomanNumeral  # noqa: F401
+from roman_numerals_converter.roman import (
+    ROMAN_REGEX,
+    RomanError,
+    RomanNumeral,
+)
 
 __all__ = [
     "cli",
@@ -17,4 +21,5 @@ __all__ = [
     "replace_roman_numerals_with_integers_in_text",
     "RomanError",
     "RomanNumeral",
+    "ROMAN_REGEX",
 ]
