@@ -27,6 +27,25 @@ class HandlerError(Exception):
 
 
 class ArithmeticHandler(AbstractHandler):
+    """
+    A handler for arithmetic operations.
+
+    This handler performs arithmetic operations such as addition, subtraction,
+    multiplication, and division. It takes in a command object and returns the
+    result of the operation.
+
+    Args:
+        store (VariableStore): The variable store used for storing the result.
+        parser (Parser): The parser used for parsing the command arguments.
+
+    Returns:
+        Union[RomanNumeral, object, int]: The result of the arithmetic operation.
+
+    Raises:
+        ValueError: If an invalid operation is specified.
+        HandlerError: If the number of arguments is invalid or if an error occurs during the operation.
+    """  # noqa: E501
+
     def __init__(self, store: VariableStore, parser: Parser) -> None:
         self.store = store
         self.parser = parser

@@ -14,6 +14,19 @@ from DSL.dsl_variable import VariableStore
 
 
 class DSLInterpreter:
+    """
+    A class that interprets and executes DSL commands.
+
+    Attributes:
+        store (VariableStore): The variable store used to store and retrieve variables.
+        parser (Parser): The parser used to parse DSL commands.
+        handlers (dict[str, AbstractHandler]): A dictionary of command handlers.
+
+    Methods:
+        execute(command_line: str) -> List[Any]: Executes the DSL commands in the given command line.
+
+    """  # noqa: E501
+
     def __init__(self) -> None:
         self.store = VariableStore()
         self.parser = Parser(self.store)
@@ -25,6 +38,16 @@ class DSLInterpreter:
         }
 
     def execute(self, command_line: str) -> List[Any]:
+        """
+        Executes the DSL commands in the given command line.
+
+        Args:
+            command_line (str): The command line containing DSL commands.
+
+        Returns:
+            List[Any]: A list of results from executing the commands.
+
+        """
         command_statements = command_line.split(";")
         results: List[Any] = []
         for statement in command_statements:

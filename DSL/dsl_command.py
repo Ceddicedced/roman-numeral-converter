@@ -3,6 +3,32 @@ class CommandError(Exception):
 
 
 class Command:
+    """
+    Represents a command in a domain-specific language (DSL).
+
+    Args:
+        command (str): The command string.
+
+    Attributes:
+        command (str): The original command string.
+        op (str): The operation of the command.
+        args (list[str]): The arguments of the command.
+
+    Properties:
+        is_assignment (bool): Indicates if the command is an assignment operation.
+        is_arithmetic (bool): Indicates if the command is an arithmetic operation.
+        is_conversion (bool): Indicates if the command is a conversion operation.
+        is_display (bool): Indicates if the command is a display operation.
+        is_valid (bool): Indicates if the command is a valid operation.
+        operation (str): The type of operation.
+
+    Raises:
+        CommandError: If the command is invalid.
+
+    Example:
+        command = Command("set a = X; set b = 5; add a and b")
+    """
+
     __commands: list[str] = [
         "set",
         "add",
@@ -14,8 +40,6 @@ class Command:
     ]
 
     def __init__(self, command: str) -> None:
-        # Example: "set a = X; set b = 5; add a and b"
-
         command = command.strip()
         if command.endswith(";"):
             command = command[:-1]
