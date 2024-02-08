@@ -3,6 +3,7 @@ This script provides a command-line interface to convert numbers to Roman numera
 """  # noqa: E501
 
 import re
+from typing import Union
 
 # Regular expression for validating Roman numerals
 ROMAN_REGEX = r"^(?=.)M{0,3}(C[MD]|D?C{0,3})(X[CL]|L?X{0,3})(I[XV]|V?I{0,3})$"
@@ -231,7 +232,7 @@ class RomanNumeral:
 
         return RomanNumeral.from_decimal(sum)
 
-    def __radd__(self, other: object) -> str | int:
+    def __radd__(self, other: object) -> Union[str, int]:
         """Add RomanNumeral to object.
         Args:
             other (object): Another object.
