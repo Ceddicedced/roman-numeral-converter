@@ -359,7 +359,7 @@ class RomanNumeral:
 
         return RomanNumeral.from_decimal(quotient)
 
-    def __rtruediv__(self, other: object) -> "RomanNumeral":
+    def __rtruediv__(self, other: object) -> float:
         """Divide Int | Str | RomanNumeral by RomanNumeral.
         Args:
             other (object): Another object.
@@ -369,20 +369,18 @@ class RomanNumeral:
         if not isinstance(other, (RomanNumeral, str, int)):
             return NotImplemented
 
-        quotient: int = 0
+        quotient: float = 0
 
         if isinstance(other, RomanNumeral):
-            quotient = self.to_decimal() // other.to_decimal()
+            quotient = other.to_decimal() / self.to_decimal()
 
         if isinstance(other, str):
-            quotient = self.to_decimal() // RomanNumeral(other).to_decimal()
+            quotient = RomanNumeral(other).to_decimal() / self.to_decimal()
 
         if isinstance(other, int):
-            quotient = self.to_decimal() // other
+            quotient = other / self.to_decimal()
 
-        assert 0 < quotient < 4000, "Division result must be between 1 and 3999."
-
-        return RomanNumeral.from_decimal(quotient)
+        return quotient
 
     @staticmethod
     def is_valid_roman(value: str) -> bool:
